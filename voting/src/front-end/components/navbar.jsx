@@ -24,7 +24,7 @@ function Navbar() {
       </a>
       <ul className={active}>
         <li className="nav-item">
-          <a href="#" className="nav-ink">
+          <a href="/" className="nav-ink">
             Accueil
           </a>
         </li>
@@ -48,7 +48,7 @@ function Navbar() {
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/s'inscription">
+          <Link to="./inscription">
             <button className="nav-button">
               S'inscrire
             </button>
