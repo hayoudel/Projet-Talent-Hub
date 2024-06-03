@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { Link } from "react-router-dom";
 import "../css/navbar.css";
 
 function Navbar() {
@@ -34,25 +34,25 @@ function Navbar() {
           </a>
         </li>
         <li className="nav-item">
-         
+          <Link to="/create-vote">
             <button className="nav-button">
               Creer un vote
             </button>
-            </li>
-         
+          </Link>
+        </li>
         <li className="nav-item">
-         
+          <Link to="/login">
             <button className="nav-button">
               Se connecter
             </button>
-          
+          </Link>
         </li>
         <li className="nav-item">
-         
+          <Link to="/s'inscription">
             <button className="nav-button">
               S'inscrire
             </button>
-         
+          </Link>
         </li>
       </ul>
       <div onClick={navToggle} className={icon}>
