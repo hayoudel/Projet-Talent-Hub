@@ -6,7 +6,7 @@
     background-color: #f0f0f0;
 }
 
-.box2 {
+.box1 {
     display: flex;
     width: 600px;
     height: 400px;
@@ -14,7 +14,7 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.image-section2 {
+.image-section1 {
     flex: 1;
     display: flex;
     justify-content: center;
@@ -23,7 +23,7 @@
 }
 
 
-.form-section2 {
+.form-section1 {
     flex: 1;
     padding: 20px;
     display: flex;
@@ -41,6 +41,7 @@ form {
 form h2 {
     margin-bottom: 20px;
     text-align: center;
+    margin-top: -30px;
 }
 
 .name-fields {
@@ -75,7 +76,7 @@ form button {
     border-radius: 20px;
     cursor: pointer;
     width: 150px;
-    margin-left: 100px;
+    margin-left: 50px;
 }
 
 form button:hover {
@@ -83,7 +84,7 @@ form button:hover {
     color: black;
    
 }
-.image-section2 { 
+.image-section1 {
     flex: 1;
     display: flex;
     justify-content: center;

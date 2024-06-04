@@ -4,12 +4,12 @@ import "../css/inscription.css";
 function Inscription() {
     return (
         <div className="container">
-            <div className="box">
-            <div className="image-section">
+            <div className="box2">
+            <div className="image-section2">
                     {/* Si tu veux utiliser l'image comme fond, pas besoin de balise img ici */}
                     {/* <img src={tonImage} alt="Image d'inscription" /> */}
                 </div>
-                <div className="form-section">
+                <div className="form-section2">
                     <form>
                         <h2>Inscription</h2>
                         

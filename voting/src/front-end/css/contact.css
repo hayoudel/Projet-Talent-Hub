@@ -6,15 +6,15 @@
     background-color: #f0f0f0;
 }
 
-.box2 {
+.box {
     display: flex;
-    width: 600px;
-    height: 400px;
+    width: 70%;
+    height: 80%;
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.image-section2 {
+.image-section {
     flex: 1;
     display: flex;
     justify-content: center;
@@ -23,7 +23,7 @@
 }
 
 
-.form-section2 {
+.form-section {
     flex: 1;
     padding: 20px;
     display: flex;
@@ -41,6 +41,7 @@ form {
 form h2 {
     margin-bottom: 20px;
     text-align: center;
+    margin-top: -30px;
 }
 
 .name-fields {
@@ -75,7 +76,7 @@ form button {
     border-radius: 20px;
     cursor: pointer;
     width: 150px;
-    margin-left: 100px;
+    margin-left: 50px;
 }
 
 form button:hover {
@@ -83,17 +84,15 @@ form button:hover {
     color: black;
    
 }
-.image-section2 { 
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-right: 1px solid #ddd;
-    background: url('../images/img.png') no-repeat center center;
-    background-size: cover; /* This will make the background cover the entire div */
-    width: 50%; /* Ajuste la taille de l'image */
-    height: 60%; /* Maintient les proportions */
-    margin-top: 80px;
+.info-section{
+    
 }
-
-
+.icon1 {
+    width: 300px;
+     margin-top: -450px;
+     margin-right: 200px;
+  }
+.text1{
+    margin-top: -450px;
+    margin-left: -300px;
+}
