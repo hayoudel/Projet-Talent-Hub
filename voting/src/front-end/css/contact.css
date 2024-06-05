@@ -30,7 +30,7 @@
     flex-direction: column;
     justify-content: center;
     background-color: #000080;
-    color: white;;
+    color: white;
 }
 
 form {
@@ -85,14 +85,33 @@ form button:hover {
    
 }
 .info-section{
-    
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+    color: black;
 }
 .icon1 {
     width: 300px;
-     margin-top: -450px;
-     margin-right: 200px;
+     margin-top: -190px;
+     margin-right: 300px;
+     margin-left: 100px;
   }
-.text1{
-    margin-top: -450px;
-    margin-left: -300px;
+.text1 {
+    margin-top: -50px;
+    margin-left: 200px;
+    margin-bottom: 100px;
+}
+.icon2 {
+    width: 300px;
+     margin-top: -150px;
+     margin-right: 300px;
+     margin-left: 100px;
+  }
+  .text2 {
+    margin-top: -10px;
+    margin-left: 200px;
+    margin-bottom: -300px;
 }
