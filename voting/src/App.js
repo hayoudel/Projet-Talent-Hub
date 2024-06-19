@@ -6,6 +6,11 @@ import Home from "./front-end/components/home";
 import Inscription from "./front-end/components/inscription";
 import Connexion from "./front-end/components/connexion";
 import Contact from "./front-end/components/contact";
+import Profile from "./front-end/components/profile";
+import Votecreer from "./front-end/components/votecreer";
+import Resultatvote from "./front-end/components/resultatvote";
+import Creervote from "./front-end/components/creervote";
+
 
 function App() {
   return (
@@ -27,8 +32,19 @@ function App() {
             </MainLayout>
           )}
         />
+        <Route
+          path="/creervote"
+          element={(
+            <MainLayout>
+              <Creervote />
+            </MainLayout>
+          )}
+        />
         <Route path="/inscription" element={<Inscription />} />
         <Route path="/connexion" element={<Connexion />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/votecreer" element={<Votecreer />} />
+        <Route path="/resultatvote" element={<Resultatvote />} />
       </Routes>
     </Router>
   );

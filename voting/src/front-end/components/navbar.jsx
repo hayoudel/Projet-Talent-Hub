@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import user from '../images/utilisateur.png';
 import "../css/navbar.css";
 
 function Navbar() {
@@ -34,7 +35,7 @@ function Navbar() {
           </a>
         </li>
         <li className="nav-item">
-          <Link to="/create-vote">
+          <Link to="/creervote">
             <button className="nav-button">
               Creer un vote
             </button>
@@ -52,6 +53,11 @@ function Navbar() {
             <button className="nav-button">
               S'inscrire
             </button>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/profile">
+            <img src={user} alt="utilisateur" className="user-icon" />
           </Link>
         </li>
       </ul>

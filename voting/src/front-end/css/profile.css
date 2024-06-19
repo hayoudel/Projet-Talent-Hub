@@ -1,0 +1,91 @@
+.containerp {
+    display: flex;
+    height: 100vh; /* Prend toute la hauteur de la vue */
+  }
+  
+  .section-left {
+    flex: 1; /* Prend 50% de la largeur */
+    background-color: #000080;
+    color: white;
+    display: flex;
+    flex-direction: column;
+  }
+
+
+.menu-icon {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+}
+
+.menu-icon a {
+  color: white;
+  font-size: 1.5rem;
+}
+
+  .section-left h2{
+    margin-bottom: 100px;
+  }
+  .section-left .profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .section-left .profile-info a {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  .section-left nav{
+    margin-left: 80px;
+    margin-top: 20px;
+  }
+  .section-left nav ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .section-left nav ul li {
+    margin: 1rem 0;
+  }
+  
+  .section-left nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 2.2rem;
+  }
+  
+  .section-right {
+    flex: 2; /* Prend 50% de la largeur */
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-direction: column;
+  }
+  .profile-info  a{
+    margin-top: 50px;
+  }
+
+
+ .profile-form1 h2{
+    color: black;
+    margin-bottom: 50px;
+ }
+  
+  .profile-form1 .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: black;
+  }
+  
+  .profile-form1 .form-group input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid black;
+    border-radius: 4px;
+  }
+  
+ 

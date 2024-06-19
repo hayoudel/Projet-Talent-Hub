@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import '../css/footer.css'; // Assurez-vous de créer ce fichier CSS pour styliser votre footer selon vos besoins.
+
+import '../css/footer.css'; 
 
 const Footer = () => {
   return (

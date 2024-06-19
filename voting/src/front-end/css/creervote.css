@@ -1,0 +1,59 @@
+
+.create-vote-container {
+  width: 40%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  margin-left: 30%;
+}
+
+.create-vote-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.create-vote-container form div {
+  margin-bottom: 15px;
+}
+
+.create-vote-container label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.create-vote-container input[type="text"],
+.create-vote-container input[type="number"],
+.create-vote-container textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.create-vote-container button {
+  display: inline-block;
+  padding: 10px 15px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.create-vote-container button[type="button"] {
+  background-color: #dc3545;
+  margin-left: 10px;
+}
+
+.create-vote-container .message {
+  text-align: center;
+  color: green;
+  margin-bottom: 15px;
+}
