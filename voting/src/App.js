@@ -1,4 +1,5 @@
 import React from "react";
+
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./front-end/components/navbar";
 import Footer from "./front-end/components/footer";
