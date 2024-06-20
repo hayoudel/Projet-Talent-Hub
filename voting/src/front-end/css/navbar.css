@@ -45,7 +45,14 @@ a {
   background: rgb(204, 204, 204);
   transition: 0.3s ease-in;
 }
-
+.au{
+  display: inline-flex;
+  gap: 20px; /* Espace entre les boutons */
+}
+.user-icon {
+  margin-left: 5px;
+  margin-top: 10px;
+}
 @media screen and (max-width: 768px) {
   .nav__toggler {
     display: block;

@@ -1,18 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import user from '../images/utilisateur.png';
 import "../css/navbar.css";
+import AuthContext from './AuthContext';
 
 function Navbar() {
   const [active, setActive] = useState("nav__menu");
   const [icon, setIcon] = useState("nav__toggler");
+  const { isLoggedIn, logout } = useContext(AuthContext);
 
   const navToggle = () => {
     if (active === "nav__menu") {
       setActive("nav__menu nav__active");
     } else setActive("nav__menu");
 
-    // Icon Toggler
     if (icon === "nav__toggler") {
       setIcon("nav__toggler toggle");
     } else setIcon("nav__toggler");
@@ -41,25 +42,38 @@ function Navbar() {
             </button>
           </Link>
         </li>
-        <li className="nav-item">
-          <Link to="./connexion">
-            <button className="nav-button">
-              Se connecter
-            </button>
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to="./inscription">
-            <button className="nav-button">
-              S'inscrire
-            </button>
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/profile">
-            <img src={user} alt="utilisateur" className="user-icon" />
-          </Link>
-        </li>
+        {!isLoggedIn && (
+          <div className="au">
+            <li className="nav-item">
+              <Link to="./connexion">
+                <button className="nav-button">
+                  Se connecter
+                </button>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="./inscription">
+                <button className="nav-button">
+                  S'inscrire
+                </button>
+              </Link>
+            </li>
+            </div>
+        )}
+        {isLoggedIn && (
+          <div className="au">
+            <li className="nav-item-user">
+              <Link to="/profile">
+                <img src={user} alt="utilisateur" className="user-icon" />
+              </Link>
+            </li>
+              <li className="nav-item">
+              <button className="nav-button" onClick={logout}>
+                Se déconnecter
+              </button>
+            </li>
+            </div>
+        )}
       </ul>
       <div onClick={navToggle} className={icon}>
         <div className="line1"></div>

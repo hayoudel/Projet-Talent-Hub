@@ -1,11 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import AuthContext from './AuthContext';
 import "../css/connexion.css";
 
 function Connexion() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const { login } = useContext(AuthContext);
+
+    const handleLogin = () => {
+      // Simuler un appel API et obtenir un token
+      const token = 'exampleAuthToken';
+  
+      // Appeler la fonction login du contexte
+      login(token);
+    }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -63,7 +73,7 @@ function Connexion() {
                             required 
                         />
                         
-                        <button type="submit">Se connecter</button>
+                        <button onClick={handleLogin}>Se connecter</button>
                     </form>
                 </div>
                 <div className="image-section1">
