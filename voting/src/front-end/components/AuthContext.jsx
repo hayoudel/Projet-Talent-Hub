@@ -6,8 +6,7 @@ export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
 
-  const fetchUser = () => {
-    const userId = 1; // Remplacez 1 par l'ID de l'utilisateur connecté
+  const fetchUser = (userId) => {
     fetch(`http://localhost:5000/api/user?userId=${userId}`)
       .then(response => {
         if (!response.ok) {
@@ -25,27 +24,29 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const token = localStorage.getItem('authToken');
-    if (token) {
+    const userId = localStorage.getItem('userId'); // Récupérer l'ID utilisateur depuis le localStorage
+    if (token && userId) {
       setIsLoggedIn(true);
-      fetchUser(); // Appeler la fonction pour récupérer les informations de l'utilisateur au chargement de la page
+      fetchUser(userId); // Appeler la fonction pour récupérer les informations de l'utilisateur au chargement de la page
     }
   }, []);
 
-  const login = (token) => {
+  const login = (token, userId) => {
     localStorage.setItem('authToken', token);
+    localStorage.setItem('userId', userId);
     setIsLoggedIn(true);
-    fetchUser(); // Appeler la fonction pour récupérer les informations de l'utilisateur lors de la connexion
+    fetchUser(userId); // Appeler la fonction pour récupérer les informations de l'utilisateur lors de la connexion
   };
 
   const logout = () => {
     localStorage.removeItem('authToken');
+    localStorage.removeItem('userId');
     setIsLoggedIn(false);
     setUser(null); // Effacer les informations de l'utilisateur lors de la déconnexion
   };
 
-  // Exporter fetchUser également pour qu'il soit accessible dans d'autres composants
   return (
-    <AuthContext.Provider value={{ isLoggedIn, user, login, logout, fetchUser }}>
+    <AuthContext.Provider value={{ isLoggedIn, user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
