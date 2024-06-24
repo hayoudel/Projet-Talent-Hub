@@ -17,38 +17,54 @@ function Createvote() {
     setCandidates(newCandidates);
   };
 
+  const handleAddCandidate = () => {
+    setCandidates([...candidates, '']);
+  };
 
   const handleRemoveCandidate = (index) => {
     const newCandidates = candidates.filter((_, i) => i !== index);
     setCandidates(newCandidates);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    
+
     if (!title || !selectedOption || !duration || candidates.some(candidate => candidate.trim() === '')) {
       setMessage('Veuillez remplir tous les champs requis.');
       return;
     }
 
-    // Submit the form data (e.g., send to backend)
-    console.log({
-      title,
-      selectedOption,
-      duration,
-      description,
-      candidates
-    });
+    try {
+      const response = await fetch('http://localhost:5000/api/createvote', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title,
+          selectedOption,
+          duration,
+          description,
+          candidates
+        }),
+      });
 
-    // Provide user feedback
-    setMessage('Le vote a été créé avec succès!');
+      if (!response.ok) {
+        throw new Error('Failed to create vote');
+      }
 
-    // Optionally reset the form
-    setTitle('');
-    setSelectedOption('');
-    setDuration('');
-    setDescription('');
-    setCandidates(['']);
+      setMessage('Le vote a été créé avec succès!');
+
+      // Optionally reset the form
+      setTitle('');
+      setSelectedOption('');
+      setDuration('');
+      setDescription('');
+      setCandidates(['']);
+    } catch (error) {
+      console.error('Error creating vote:', error.message);
+      setMessage('Erreur lors de la création du vote.');
+    }
   };
 
   return (
@@ -97,6 +113,7 @@ function Createvote() {
               )}
             </div>
           ))}
+          <button type="button" onClick={handleAddCandidate}>Ajouter un candidat</button>
         </div>
         <div>
           <label>Durée du vote (en heures):</label>

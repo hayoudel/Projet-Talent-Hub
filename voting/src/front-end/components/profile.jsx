@@ -25,7 +25,7 @@ const Profile = () => {
         <nav>
           <ul>
             <li><a href="/profile">Informations personnelles</a></li>
-            <li><a href="/votecreer">Créer un vote</a></li>
+            <li><a href="/votecreer">vote Créer</a></li>
             <li><a href="/resultatvote">Résultat des votes</a></li>
           </ul>
         </nav>

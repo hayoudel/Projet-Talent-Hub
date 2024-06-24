@@ -1,9 +1,10 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useContext } from 'react';import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faBars } from '@fortawesome/free-solid-svg-icons'; 
 import '../css/profile.css';
+import AuthContext from './AuthContext'; // Assurez-vous d'importer le contexte d'authentification
 
 const Resultatvote= () => {
+  const { user } = useContext(AuthContext); // Accéder aux informations de l'utilisateur depuis le contexte
   return (
     <div className="containerp">
       <div className="section-left">
@@ -15,7 +16,8 @@ const Resultatvote= () => {
         <div className="profile-info">
           <a href="/">
             <FontAwesomeIcon icon={faUser} />
-          </a> <br /> <h2>Jean Dupont</h2>
+          </a> <br /> 
+          <h2>{user ? `${user.prenom} ${user.nom}` : 'Nom Utilisateur'}</h2> {/* Afficher le nom de l'utilisateur */}
         </div>
         <nav>
           <ul>

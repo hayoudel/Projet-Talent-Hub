@@ -80,6 +80,34 @@ app.get('/api/user', (req, res) => {
     });
 });
 
+app.post('/api/createvote', (req, res) => {
+    const { title, selectedOption, duration, description, candidates } = req.body;
+    const sql = 'INSERT INTO CreateVote (title, selectedOption, duration, description, candidates) VALUES (?, ?, ?, ?, ?)';
+    const values = [title, selectedOption, duration, description, JSON.stringify(candidates)];
+  
+    db.query(sql, values, (err, result) => {
+      if (err) {
+        return res.status(500).send(err);
+      }
+      res.send('Vote created successfully');
+    });
+  });
+  
+  app.get('/api/userVotes', (req, res) => {
+    const userId = req.query.userId;
+  
+    // Exemple de requête SQL pour récupérer les votes de l'utilisateur
+    const sql = 'SELECT * FROM CreateVote WHERE id = ?';
+    db.query(sql, [userId], (err, results) => {
+      if (err) {
+        console.error('Error fetching user votes:', err);
+        return res.status(500).send('Failed to fetch user votes');
+      }
+      res.status(200).json({ votes: results });
+    });
+  });
+  
+
 
 
 app.listen(port, () => {
