@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import "../css/creervote.css";
+import AuthContext from './AuthContext'; // Importer le contexte d'authentification
 
 function Createvote() {
+  const { user } = useContext(AuthContext); // Accéder aux informations de l'utilisateur
   const [title, setTitle] = useState('');
   const [selectedOption, setSelectedOption] = useState('');
   const [duration, setDuration] = useState('');
@@ -34,6 +36,11 @@ function Createvote() {
       return;
     }
 
+    if (!user) {
+      setMessage('Utilisateur non connecté.');
+      return;
+    }
+
     try {
       const response = await fetch('http://localhost:5000/api/createvote', {
         method: 'POST',
@@ -41,6 +48,7 @@ function Createvote() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          userId: user.id, // Inclure l'ID de l'utilisateur
           title,
           selectedOption,
           duration,

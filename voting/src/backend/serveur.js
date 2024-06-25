@@ -81,34 +81,38 @@ app.get('/api/user', (req, res) => {
 });
 
 app.post('/api/createvote', (req, res) => {
-    const { title, selectedOption, duration, description, candidates } = req.body;
-    const sql = 'INSERT INTO CreateVote (title, selectedOption, duration, description, candidates) VALUES (?, ?, ?, ?, ?)';
-    const values = [title, selectedOption, duration, description, JSON.stringify(candidates)];
+    const { userId, title, selectedOption, duration, description, candidates } = req.body;
   
-    db.query(sql, values, (err, result) => {
+    const sql = `
+      INSERT INTO CreateVote (userId, title, selectedOption, duration, description, candidates)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `;
+  
+    const candidatesJson = JSON.stringify(candidates);
+  
+    db.query(sql, [userId, title, selectedOption, duration, description, candidatesJson], (err, result) => {
       if (err) {
-        return res.status(500).send(err);
+        console.error('Error inserting vote:', err);
+        return res.status(500).json({ error: 'Failed to create vote' });
       }
-      res.send('Vote created successfully');
+  
+      res.status(201).json({ message: 'Vote created successfully' });
     });
   });
-  
-  app.get('/api/userVotes', (req, res) => {
+
+  app.get('/api/votes', (req, res) => {
     const userId = req.query.userId;
-  
-    // Exemple de requête SQL pour récupérer les votes de l'utilisateur
-    const sql = 'SELECT * FROM CreateVote WHERE id = ?';
-    db.query(sql, [userId], (err, results) => {
-      if (err) {
-        console.error('Error fetching user votes:', err);
-        return res.status(500).send('Failed to fetch user votes');
-      }
-      res.status(200).json({ votes: results });
+
+    const FIND_VOTES_QUERY = 'SELECT * FROM CreateVote WHERE userId = ?';
+    db.query(FIND_VOTES_QUERY, [userId], (err, results) => {
+        if (err) {
+            console.error('Error fetching votes:', err);
+            res.status(500).json({ error: 'Failed to fetch votes' });
+        } else {
+            res.status(200).json({ votes: results });
+        }
     });
-  });
-  
-
-
+});
 
 app.listen(port, () => {
     console.log(`Serveur Express écoutant sur le port ${port}`);

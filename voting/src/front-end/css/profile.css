@@ -65,27 +65,39 @@
     color: white;
     flex-direction: column;
   }
-  .profile-info  a{
-    margin-top: 50px;
-  }
-
-
- .profile-form1 h2{
-    color: black;
-    margin-bottom: 50px;
- }
-  
-  .profile-form1 .form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
+  .profile-form1 {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     color: black;
   }
   
-  .profile-form1 .form-group input {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid black;
-    border-radius: 4px;
+  .profile-form1 h2 {
+    margin-bottom: 20px;
   }
   
- 
+  .profile-form1 h3 {
+    margin-top: 20px;
+  }
+  
+  .profile-form1 h4 {
+    margin-top: 10px;
+  }
+  
+  .profile-form1 p {
+    margin-bottom: 10px;
+  }
+  
+  .profile-form1 ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .profile-form1 ul li {
+    margin-bottom: 5px;
+  }
+  
+  .profile-form1 ul li svg {
+    margin-right: 10px;
+  }
