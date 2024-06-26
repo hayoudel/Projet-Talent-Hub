@@ -126,7 +126,7 @@ function Createvote() {
         <div>
           <label>Durée du vote (en heures):</label>
           <input
-            type="number"
+            type="date"
             value={duration}
             onChange={(e) => setDuration(e.target.value)}
             required

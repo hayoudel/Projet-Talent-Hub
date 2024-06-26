@@ -44,6 +44,15 @@ const Votecreer = () => {
     fetchUserVotes();
   }, [isLoggedIn, user]);
 
+  // Fonction pour formater la date en "jj/mm/aaaa"
+  const formatDate = (isoDate) => {
+    const date = new Date(isoDate);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear().toString();
+    return `${day}/${month}/${year}`;
+  };
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -84,7 +93,7 @@ const Votecreer = () => {
                   <h3>Vote créé numéro {vote.id}</h3>
                   <h4>{vote.title}</h4>
                   <p>{vote.description}</p>
-                  <p>Temps: {vote.duration} minutes</p>
+                  <p>Temps: {formatDate(vote.duration)}</p> {/* Formatage de la date ici */}
                   {vote.candidates && typeof vote.candidates === 'string' ? (
                     <div>
                       <h4>Candidats</h4>
