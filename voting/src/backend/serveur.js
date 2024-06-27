@@ -100,39 +100,21 @@ app.post('/api/createvote', (req, res) => {
     });
   });
 
-  app.get('/api/votes', (req, res) => {
-    const userId = req.query.userId;
-
-    const FIND_VOTES_QUERY = 'SELECT * FROM CreateVote WHERE userId = ?';
-    db.query(FIND_VOTES_QUERY, [userId], (err, results) => {
-        if (err) {
-            console.error('Error fetching votes:', err);
-            res.status(500).json({ error: 'Failed to fetch votes' });
-        } else {
-            res.status(200).json({ votes: results });
-        }
+ // Route pour obtenir tous les votes
+app.get('/api/votes', (req, res) => {
+    const GET_ALL_VOTES_QUERY = 'SELECT * FROM CreateVote';
+  
+    db.query(GET_ALL_VOTES_QUERY, (err, results) => {
+      if (err) {
+        console.error('Error fetching votes:', err);
+        return res.status(500).json({ error: 'Failed to fetch votes' });
+      }
+  
+      res.status(200).json({ votes: results });
     });
-});
-app.post('/api/vote/:id', (req, res) => {
-    const voteId = req.params.id;
-    const { userId, candidate } = req.body;
-  
-    // Exemple de validation basique
-    if (!userId || !candidate) {
-      return res.status(400).json({ error: 'Missing userId or candidate' });
-    }
-  
-    // Exemple de traitement
-    try {
-      // Votre logique de traitement du vote ici
-  
-      // Exemple de réponse réussie
-      res.status(200).json({ message: 'Vote successful' });
-    } catch (error) {
-      console.error('Error voting:', error.message);
-      res.status(500).json({ error: 'Internal Server Error' });
-    }
   });
+  
+
   
 
 app.listen(port, () => {
