@@ -60,35 +60,34 @@ const Votecreer = () => {
           candidate: candidateName,
         }),
       });
-
+  
       if (!response.ok) {
         throw new Error('Failed to vote');
       }
-
+  
       const data = await response.json();
-      console.log('Vote response:', data);
-
+      console.log('Vote response:', data); // Vérifie la réponse de l'API
+  
       const updatedVotes = userVotes.map(vote => {
         if (vote.id === voteId) {
           return {
             ...vote,
-            candidates: vote.candidates.map(candidate => {
-              if (candidate.name === candidateName) {
-                return { ...candidate, votes: candidate.votes + 1 };
-              }
-              return candidate;
-            }),
             voted: true,
+            votedCandidate: candidateName,
           };
         }
         return vote;
       });
-
+  
+      console.log('Updated votes:', updatedVotes); // Vérifie les votes mis à jour
+  
       setUserVotes(updatedVotes);
     } catch (error) {
       console.error('Error voting:', error.message);
     }
+    console.log('handleVote')
   };
+  
 
   if (loading) {
     return <p>Loading...</p>;
@@ -132,16 +131,18 @@ const Votecreer = () => {
                   <h4>{vote.title}</h4>
                   <p>{vote.description}</p>
                   <p>Temps: {formatDate(vote.duration)}</p>
-                  {vote.candidates && Array.isArray(vote.candidates) ? (
+                  {vote.candidates && typeof vote.candidates === 'string' ? (
                     <div>
                       <h4>Candidats</h4>
                       <ul>
-                        {vote.candidates.map((candidate, index) => (
+                        {JSON.parse(vote.candidates).map((candidate, index) => (
                           <li key={index}>
-                            <FontAwesomeIcon icon={faUser} /> {candidate.name} - {candidate.votes} votes
-                            {!vote.voted && (
-                              <button onClick={() => handleVote(vote.id, candidate.name)}>Voter</button>
-                            )}
+                            <FontAwesomeIcon icon={faUser} /> {candidate}
+                            {!vote.voted ? (
+                              <button onClick={() => handleVote(vote.id, candidate)}>Voter</button>
+                            ) : vote.votedCandidate === candidate ? (
+                              <span>Vous avez voté pour ce candidat</span>
+                            ) : null}
                           </li>
                         ))}
                       </ul>
