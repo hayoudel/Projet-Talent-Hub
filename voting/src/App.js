@@ -11,6 +11,7 @@ import Profile from "./front-end/components/profile";
 import Votecreer from "./front-end/components/votecreer";
 import Resultatvote from "./front-end/components/resultatvote";
 import Creervote from "./front-end/components/creervote";
+import Votons from "./front-end/components/votons";
 import { AuthProvider } from "./front-end/components/AuthContext";
 
 
@@ -48,6 +49,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/votecreer" element={<Votecreer />} />
         <Route path="/resultatvote" element={<Resultatvote />} />
+        <Route path="/votez" element={<Votons />} />
       </Routes>
     </Router>
     </AuthProvider>

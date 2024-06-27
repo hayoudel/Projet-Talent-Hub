@@ -20,14 +20,10 @@ const Votecreer = () => {
           }
           const data = await response.json();
           console.log('API response:', data);
-          
+
           if (data && data.votes && data.votes.length > 0) {
-            // Filtrer les votes pour l'utilisateur connecté
             const filteredVotes = data.votes.filter(vote => vote.userId === user.id);
-
-            // Trier les votes par ordre de création (exemple : par id)
             filteredVotes.sort((a, b) => a.id - b.id);
-
             setUserVotes(filteredVotes);
           } else {
             throw new Error('API response does not contain votes');
@@ -44,13 +40,54 @@ const Votecreer = () => {
     fetchUserVotes();
   }, [isLoggedIn, user]);
 
-  // Fonction pour formater la date en "jj/mm/aaaa"
   const formatDate = (isoDate) => {
     const date = new Date(isoDate);
     const day = date.getDate().toString().padStart(2, '0');
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
     const year = date.getFullYear().toString();
     return `${day}/${month}/${year}`;
+  };
+
+  const handleVote = async (voteId, candidateName) => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/vote/${voteId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userId: user.id,
+          candidate: candidateName,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to vote');
+      }
+
+      const data = await response.json();
+      console.log('Vote response:', data);
+
+      const updatedVotes = userVotes.map(vote => {
+        if (vote.id === voteId) {
+          return {
+            ...vote,
+            candidates: vote.candidates.map(candidate => {
+              if (candidate.name === candidateName) {
+                return { ...candidate, votes: candidate.votes + 1 };
+              }
+              return candidate;
+            }),
+            voted: true,
+          };
+        }
+        return vote;
+      });
+
+      setUserVotes(updatedVotes);
+    } catch (error) {
+      console.error('Error voting:', error.message);
+    }
   };
 
   if (loading) {
@@ -79,9 +116,8 @@ const Votecreer = () => {
           <ul>
             <li><a href="/profile">Dossiers personnels</a></li>
             <li><a href="/votecreer">Vote Créer</a></li>
-            <li><a href="/votez">Votez</a></li>
             <li><a href="/resultatvote">Résultat des votes</a></li>
-
+            <li><a href="/votez">Votez</a></li>
           </ul>
         </nav>
       </div>
@@ -95,14 +131,17 @@ const Votecreer = () => {
                   <h3>Vote créé numéro {vote.id}</h3>
                   <h4>{vote.title}</h4>
                   <p>{vote.description}</p>
-                  <p>Temps: {formatDate(vote.duration)}</p> {/* Formatage de la date ici */}
-                  {vote.candidates && typeof vote.candidates === 'string' ? (
+                  <p>Temps: {formatDate(vote.duration)}</p>
+                  {vote.candidates && Array.isArray(vote.candidates) ? (
                     <div>
                       <h4>Candidats</h4>
                       <ul>
-                        {JSON.parse(vote.candidates).map((candidate, index) => (
+                        {vote.candidates.map((candidate, index) => (
                           <li key={index}>
-                            <FontAwesomeIcon icon={faUser} /> {candidate}
+                            <FontAwesomeIcon icon={faUser} /> {candidate.name} - {candidate.votes} votes
+                            {!vote.voted && (
+                              <button onClick={() => handleVote(vote.id, candidate.name)}>Voter</button>
+                            )}
                           </li>
                         ))}
                       </ul>

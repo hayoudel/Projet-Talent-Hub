@@ -113,6 +113,27 @@ app.post('/api/createvote', (req, res) => {
         }
     });
 });
+app.post('/api/vote/:id', (req, res) => {
+    const voteId = req.params.id;
+    const { userId, candidate } = req.body;
+  
+    // Exemple de validation basique
+    if (!userId || !candidate) {
+      return res.status(400).json({ error: 'Missing userId or candidate' });
+    }
+  
+    // Exemple de traitement
+    try {
+      // Votre logique de traitement du vote ici
+  
+      // Exemple de réponse réussie
+      res.status(200).json({ message: 'Vote successful' });
+    } catch (error) {
+      console.error('Error voting:', error.message);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+  
 
 app.listen(port, () => {
     console.log(`Serveur Express écoutant sur le port ${port}`);
